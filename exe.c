@@ -43,7 +43,11 @@ void execute_command(char *command)
 			if (child_pid > 0)
 			{
 				/* Wats for child to finish */
-				waitpid(child_pid, NULL, 0);
+				if (waitpid(child_pid, NULL, 0) == -1)
+				{
+					perror("waitpid");
+					 exit(EXIT_FAILURE);
+				}
 			}
 		}
 	}
