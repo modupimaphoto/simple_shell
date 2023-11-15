@@ -19,6 +19,11 @@ int main(void)
 		if (read == -1)
 		{
 			/* Handle CTRL + D */
+			if (errno == ENOMEM)
+			{
+				perror("Error allocating memory");
+				exit(EXIT_FAILURE);
+			}
 			printf("\nExiting shell.\n");
 			free(input);
 			exit(0);
