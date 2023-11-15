@@ -1,15 +1,11 @@
 #include "main.h"
-
 /**
  * execute_command - handles the execution of user commands
- *
  * @command: user command.
- *
  * Return: Nothing.
  */
 void execute_command(char *command)
 {
-	/* Tokenize the command */
 	char *args[MAX_INPUT_SIZE];
 	int i = 0;
 	char *token = strtok(command, " \t\n");
@@ -22,7 +18,6 @@ void execute_command(char *command)
 	args[i] = NULL;
 	if (i > 0)
 	{
-		/* Check for built-in commans */
 		if (strcmp(args[0], "exit") == 0)
 			exit(0);
 		else if (strcmp(args[0], "cd") == 0)
@@ -37,12 +32,10 @@ void execute_command(char *command)
 		}
 		else
 		{
-			/* Fork and execute the command */
 			pid_t child_pid = fork_and_execute(command);
 
 			if (child_pid > 0)
 			{
-				/* Wats for child to finish */
 				if (waitpid(child_pid, NULL, 0) == -1)
 				{
 					perror("waitpid");
