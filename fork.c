@@ -36,7 +36,7 @@ pid_t fork_and_execute(char *command)
 	else if (pid < 0)
 	{
 		/* Erro handling for fork failure */
-		perror("Erro:");
+		perror("Error:");
 		exit(1);
 	}
 	/* Parent process returns the child PID */
